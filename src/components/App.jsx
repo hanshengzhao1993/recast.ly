@@ -1,6 +1,13 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+    var k = props.searchYouTube();
+    this.state = {currentVideo : fakeVideoData[0],
+                  videos : fakeVideoData};
+  }
+
+  onTitleClick(clickedVideo) {
+    this.setState({ currentVideo : clickedVideo});
   }
 
   render() {
@@ -8,12 +15,12 @@ class App extends React.Component {
       <div>
         <Nav />
         <div className="col-md-7">
-        {console.log('cool :',cool)}
-          <VideoPlayer video={this}/>          
+          <VideoList videos = {this.state.videos} onTitleClick= {this.onTitleClick.bind(this)}/>
+        }
         }
         </div>
         <div className="col-md-5">
-          <VideoList/>
+          <VideoPlayer video = {this.state.currentVideo}/>          
         </div>
       </div>
     );
